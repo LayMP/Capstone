@@ -1,0 +1,66 @@
+<div class="container mx-auto mt-8 px-4">
+    <div class="flex flex-col md:flex-row justify-between mb-4">
+      <h1 class="text-2xl font-bold text-gray-700 mb-2 md:mb-0">Listado de Horas Registradas</h1>
+      <button (click)="abrirModal()" class="bg-indigo-600 text-white px-4 py-2 rounded-md hover:bg-indigo-700 transition-colors duration-300">
+        Agregar Nueva Hora
+      </button>
+    </div>
+  
+    <!-- Listado de citas -->
+    <div class="bg-white shadow-md rounded-lg p-4">
+      <table class="min-w-full table-auto">
+        <thead>
+          <tr class="bg-gray-200">
+            <th class="px-4 py-2">Fecha</th>
+            <th class="px-4 py-2">Hora</th>
+            <th class="px-4 py-2">Estado</th>
+            <th class="px-4 py-2">Modificar</th>
+            <th class="px-4 py-2">Eliminar</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let cita of citas">
+            <td class="border px-4 py-2">{{ cita.fecha }}</td>
+            <td class="border px-4 py-2">{{ cita.hora }}</td>
+            <td class="border px-4 py-2">{{ cita.estado === 1 ? 'Disponible' : 'Ocupado' }}</td>
+            <td class="border px-4 py-2">
+              <button (click)="editarCita(cita)" class="bg-yellow-500 text-white px-4 py-1 rounded-md hover:bg-yellow-600 transition-colors duration-300">
+                Modificar
+              </button>
+            </td>
+            <td class="border px-4 py-2">
+              <button (click)="eliminarCita(cita)" class="bg-red-500 text-white px-4 py-1 rounded-md hover:bg-red-600 transition-colors duration-300">
+                Eliminar
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  
+    <!-- Modal para agregar/editar cita -->
+    <div *ngIf="mostrarModal" class="fixed inset-0 bg-gray-800 bg-opacity-75 flex items-center justify-center">
+      <div class="bg-white rounded-lg p-6 w-full max-w-md">
+        <h2 class="text-xl font-bold mb-4">{{ esEditar ? 'Editar' : 'Nueva' }} Cita</h2>
+        <form [formGroup]="citaForm" (ngSubmit)="onSubmit()">
+          <div class="mb-4">
+            <label for="fecha" class="block text-sm font-medium text-gray-700">Fecha</label>
+            <input id="fecha" type="date" formControlName="fecha" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+          </div>
+          <div class="mb-4">
+            <label for="hora" class="block text-sm font-medium text-gray-700">Hora</label>
+            <input id="hora" type="time" formControlName="hora" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+          </div>
+          <div class="flex justify-end">
+            <button type="button" (click)="cerrarModal()" class="bg-gray-500 text-white px-4 py-2 mr-2 rounded-md hover:bg-gray-600 transition-colors duration-300">
+              Cancelar
+            </button>
+            <button type="submit" class="bg-indigo-600 text-white px-4 py-2 rounded-md hover:bg-indigo-700 transition-colors duration-300">
+              Guardar
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  
