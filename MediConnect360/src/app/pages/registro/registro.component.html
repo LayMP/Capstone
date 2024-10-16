@@ -1,0 +1,97 @@
+<title>MediConnect360</title>
+
+<body class="bg-white text-gray-600 work-sans leading-normal text-base tracking-normal">
+    <section>
+        <div class="mt-5 mb-5 flex items-center justify-center">
+            <div class="container mx-auto max-w-md bg-white p-8 rounded-lg shadow-lg">
+                <h2 class="text-2xl font-bold text-center text-gray-700 mb-6">Registro</h2>
+
+                <form [formGroup]="registroForm" (ngSubmit)="onSubmit()">
+                    <div class="mb-4">
+                        <label for="nombre" class="block text-gray-700 font-semibold mb-2">Nombre</label>
+                        <input type="text" id="nombre" formControlName="nombre" placeholder="Tu nombre" required
+                            class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        <div *ngIf="registroForm.get('nombre')?.invalid && (registroForm.get('nombre')?.touched || registroForm.get('nombre')?.dirty)" class="text-red-500 text-sm">
+                            <div *ngIf="registroForm.get('nombre')?.errors?.['required']">El nombre es obligatorio.</div>
+                            <div *ngIf="registroForm.get('nombre')?.errors?.['maxlength']">El nombre no puede exceder los 50 caracteres.</div>
+                            <div *ngIf="registroForm.get('nombre')?.errors?.['pattern']">El nombre solo puede contener letras.</div>
+                        </div>
+                    </div>
+
+                    <div class="mb-4">
+                        <label for="apellido" class="block text-gray-700 font-semibold mb-2">Apellido</label>
+                        <input type="text" id="apellido" formControlName="apellido" placeholder="Tu apellido" required
+                            class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        <div *ngIf="registroForm.get('apellido')?.invalid && (registroForm.get('apellido')?.touched || registroForm.get('apellido')?.dirty)" class="text-red-500 text-sm">
+                            <div *ngIf="registroForm.get('apellido')?.errors?.['required']">El apellido es obligatorio.</div>
+                            <div *ngIf="registroForm.get('apellido')?.errors?.['maxlength']">El apellido no puede exceder los 50 caracteres.</div>
+                            <div *ngIf="registroForm.get('apellido')?.errors?.['pattern']">El apellido solo puede contener letras.</div>
+                        </div>
+                    </div>
+
+                    <div class="mb-4">
+                        <label for="rut" class="block text-gray-700 font-semibold mb-2">Rut</label>
+                        <input type="text" id="rut" formControlName="rut" placeholder="00.000.000-0" required
+                            class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        <div *ngIf="registroForm.get('rut')?.invalid && (registroForm.get('rut')?.touched || registroForm.get('rut')?.dirty)" class="text-red-500 text-sm">
+                            <div *ngIf="registroForm.get('rut')?.errors?.['required']">El RUT es obligatorio.</div>
+                            <div *ngIf="registroForm.get('rut')?.errors?.['pattern']">El RUT debe seguir el formato 00.000.000-0.</div>
+                        </div>
+                    </div>
+
+                    <div class="mb-4">
+                        <label for="telefono" class="block text-gray-700 font-semibold mb-2">Teléfono</label>
+                        <input type="text" id="telefono" formControlName="telefono" placeholder="9XXXXXXXX" required
+                            class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        <div *ngIf="registroForm.get('telefono')?.invalid && (registroForm.get('telefono')?.touched || registroForm.get('telefono')?.dirty)" class="text-red-500 text-sm">
+                            <div *ngIf="registroForm.get('telefono')?.errors?.['required']">El teléfono es obligatorio.</div>
+                            <div *ngIf="registroForm.get('telefono')?.errors?.['pattern']">El teléfono debe comenzar con 9 y tener 9 caracteres.</div>
+                        </div>
+                    </div>
+
+                    <div class="mb-4">
+                        <label for="fechaNacimiento" class="block text-gray-700 font-semibold mb-2">Fecha de Nacimiento</label>
+                        <input type="date" id="fechaNacimiento" formControlName="fechaNacimiento" required
+                            class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        <div *ngIf="registroForm.get('fechaNacimiento')?.invalid && (registroForm.get('fechaNacimiento')?.touched || registroForm.get('fechaNacimiento')?.dirty)" class="text-red-500 text-sm">
+                            <div *ngIf="registroForm.get('fechaNacimiento')?.errors?.['required']">La fecha de nacimiento es obligatoria.</div>
+                            <div *ngIf="registroForm.get('fechaNacimiento')?.errors?.['fechaInvalida']">La fecha de nacimiento no puede ser mayor a la fecha actual.</div>
+                        </div>
+                    </div>
+
+                    <div class="mb-6">
+                        <label for="email" class="block text-gray-700 font-semibold mb-2">Correo Electrónico</label>
+                        <input type="email" id="email" formControlName="email" placeholder="correo&#64;ejemplo.com" required
+                            class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        <div *ngIf="registroForm.get('email')?.invalid && (registroForm.get('email')?.touched || registroForm.get('email')?.dirty)" class="text-red-500 text-sm">
+                            <div *ngIf="registroForm.get('email')?.errors?.['required']">El correo es obligatorio.</div>
+                            <div *ngIf="registroForm.get('email')?.errors?.['email']">El correo no es válido.</div>
+                            <div *ngIf="registroForm.get('email')?.errors?.['pattern']">El correo debe seguir el formato correo&#64;correo.com.</div>
+                        </div>
+                    </div>
+
+                    <div class="mb-4">
+                        <label for="password" class="block text-gray-700 font-semibold mb-2">Contraseña</label>
+                        <input type="password" id="password" formControlName="password" placeholder="Tu contraseña" required
+                            class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        <div *ngIf="registroForm.get('password')?.invalid && (registroForm.get('password')?.touched || registroForm.get('password')?.dirty)" class="text-red-500 text-sm">
+                            <div *ngIf="registroForm.get('password')?.errors?.['required']">La contraseña es obligatoria.</div>
+                            <div *ngIf="registroForm.get('password')?.errors?.['minlength']">La contraseña debe tener al menos 8 caracteres.</div>
+                            <div *ngIf="registroForm.get('password')?.errors?.['maxlength']">La contraseña no puede exceder los 15 caracteres.</div>
+                        </div>
+                    </div>
+
+                    <button type="submit"
+                        class="w-full bg-blue-500 text-white font-semibold py-2 px-4 rounded-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        Registrarse
+                    </button>
+                </form>
+
+                <p class="text-center text-gray-600 mt-6">
+                    ¿Ya tienes una cuenta?
+                    <a [routerLink]="['/login']" class="text-blue-500 hover:underline">Inicia Sesión</a>
+                </p>
+            </div>
+        </div>
+    </section>
+</body>

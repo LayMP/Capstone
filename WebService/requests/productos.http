@@ -1,0 +1,35 @@
+GET http://localhost:8080/productos
+
+###
+
+GET http://localhost:8080/producto/1000
+
+###
+
+POST http://localhost:8080/producto
+Content-Type: application/json
+
+{
+    "nombre": "Tablet",
+    "descripcion": "Tablet nueva",
+    "precio": 5000,
+    "fecha": "04-26-2023"
+}
+
+###
+
+PUT http://localhost:8080/producto
+Content-Type: application/json
+
+{
+    "id_producto": 1,
+    "nombre": "prueba de update",
+    "descripcion": "pruebda de update",
+    "precio": 1,
+    "imagen": ""
+
+}
+
+###
+
+DELETE http://localhost:8080/producto/16
